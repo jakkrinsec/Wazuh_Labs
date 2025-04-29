@@ -2,9 +2,16 @@
 ## Introduction
 โปรเจ็คนี้สร้างเพื่อทดสอบการตรวจจับการบุกรุกและการวิเคราะห์วิธีการด้วย Wazuh
 ## Setup
-### 1. Setup Wazuh on Ubantu 22.04 as a Wazuh Server
+### 1. ติดตั้ง Ubantu 22.04 บน Virtual Box
+- ดาวน์โหลด Ubuntu Server 20.04 LTS ISO จาก https://ubuntu.com/download/server
+- เริ่มต้น VM และเลือกไฟล์ ISO ที่ดาวน์โหลดเป็น optical drive
+- ทำตามขั้นตอนการติดตั้ง Ubuntu Server (เลือกติดตั้ง OpenSSH Server ด้วย)
+- หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
+  ``` bash
+     sudo apt update && sudo apt upgrade -y
+Setup Wazuh on Ubantu 22.04 as a Wazuh Server
 - Step
-   - หลังจากติดตั้ง Ubantu บน Virtual Box สำเร็จ ทำการอัพเดต
+   - หลังจากติดตั้ง Ubantu บน Virtual Box สำเร็จ ทำการล็อคอินและอัพเดต
      ``` bash
      sudo apt update && sudo apt upgrade -y
      
