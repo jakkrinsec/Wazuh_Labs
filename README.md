@@ -2,9 +2,13 @@
 ## Introduction
 โปรเจ็คนี้สร้างเพื่อทดสอบการตรวจจับการบุกรุกและการวิเคราะห์วิธีการด้วย Wazuh
 ## Setup
-1. Setup Wazuh on Ubantu 22.04 as a Wazuh Server
-   Step
-3. Setup PC (Windows10) as a Wazuh Agent
+### 1. Setup Wazuh on Ubantu 22.04 as a Wazuh Server
+- Step
+   - หลังจากติดตั้ง Ubantu บน Virtual Box สำเร็จ ทำการอัพเดต
+     ``` bash
+     sudo apt update && sudo apt upgrade -y
+     
+2. Setup PC (Windows10) as a Wazuh Agent
 
  
 รองรับการติดตั้งบน
