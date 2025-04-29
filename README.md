@@ -86,29 +86,55 @@ jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
 2025/04/29 11:44:40 wazuh-remoted: INFO: (1410): Reading authentication keys file.
 ```
 
+---
 
-## Testing
-### 1. File integrity monitoring(FIM)
-ตรวจสอบความสมบูรณ์ของไฟล์ โดยการตรวจจับการสร้าง แก้ไข หรือลบไฟล์ต่างๆ ใน Path ที่เราต้องการได้
-#### Setup
-- แก้ไข File ossec.conf ที่ C:\Program Files (x86)\ossec-agent\ossec.conf
-- ไปที่หัวข้อ <syscheck>
-- เพิ่ม Directory ที่ต้องการ Monitor
-``` bash
-<directories check_all="yes" report_changes="yes" realtime="yes">C:\Users\jakkr\Desktop</directories>
-```
-- Restart Wazuh Agent
-``` bash
-Restart-Service -Name wazuh
-```
-- ตรวจสอบ Service
-``` bash
-sudo tail -f /var/ossec/logs/ossec.log
+## Lab Contents
+| Lab | หัวข้อ | รายละเอียด |
+|-----|--------|------------|
+| 1   | File Integrity Monitoring (FIM) | ตรวจจับการเปลี่ยนแปลงไฟล์แบบ Real-time |
+| 2   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 
-2025/04/29 20:32:10 rootcheck: INFO: Ending rootcheck scan.
-2025/04/29 20:32:20 wazuh-agent: INFO: (6009): File integrity monitoring scan ended.
-2025/04/29 20:32:20 wazuh-agent: INFO: FIM sync module started.
-2025/04/29 20:32:22 wazuh-agent: INFO: (6012): Real-time file integrity monitoring started.
-```
-- ตรวจสอบ Log ไปที่ Integrity Monitoring -> Event สังเกตุ rule id 550,553,554
-![image](https://github.com/user-attachments/assets/10263d37-613b-4abb-8360-cb50f2e2ca9d)
+
+## Lab 1 – File Integrity Monitoring (FIM)
+### Objective
+ทดสอบการตรวจสอบความสมบูรณ์ของไฟล์ (File Integrity Monitoring) โดยใช้ Wazuh Agent เพื่อตรวจจับการ **สร้าง**, **แก้ไข**, และ **ลบ** ไฟล์ในไดเรกทอรีที่กำหนด
+
+### Setup Instructions
+#### 1. กำหนด Directory ที่ต้องการ Monitor
+  - แก้ไขไฟล์ `ossec.conf` บนเครื่อง Agent:
+     - C:\Program Files (x86)\ossec-agent\ossec.conf
+  - ไปที่ section `<syscheck>` และเพิ่ม directory ที่ต้องการตรวจสอบแบบ Real-time:
+  ``` bash
+  <directories check_all="yes" report_changes="yes" realtime="yes">C:\Users\jakkr\Desktop</directories>
+  ```
+#### 2. Restart Wazuh Agent 
+  - เปิด PowerShell ด้วยสิทธิ์ Administrator และรันคำสั่ง:
+  ``` bash
+  Restart-Service -Name wazuh
+  ```
+#### 3. ตรวจสอบสถานะ Agent
+  - ตรวจสอบ Log บน Wazuh Server ด้วยคำสั่ง:
+  ``` bash
+  sudo tail -f /var/ossec/logs/ossec.log
+  ```
+  - ตัวอย่าง Log ที่เกี่ยวข้องกับ FIM:
+  ``` bash
+  2025/04/29 20:32:10 rootcheck: INFO: Ending rootcheck scan.
+  2025/04/29 20:32:20 wazuh-agent: INFO: (6009): File integrity monitoring scan ended.
+  2025/04/29 20:32:20 wazuh-agent: INFO: FIM sync module started.
+  2025/04/29 20:32:22 wazuh-agent: INFO: (6012): Real-time file integrity monitoring started.
+  ```
+#### 4. ตรวจสอบ Event บน Dashboard
+  - เข้าสู่ Wazuh Dashboard
+  - ไปที่เมนู Integrity Monitoring → Events
+  - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
+    - 550 - New file created
+    - 553 - File modified
+    - 554 - File deleted
+  - ตัวอย่าง Event:
+  ![image](https://github.com/user-attachments/assets/10263d37-613b-4abb-8360-cb50f2e2ca9d)
+
+### Summary
+- ติดตั้งและตั้งค่า FIM ได้สำเร็จ
+- ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Realtime
+- ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID ที่เกี่ยวข้อง
