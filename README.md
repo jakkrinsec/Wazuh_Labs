@@ -1,4 +1,12 @@
-# Wazuh
+# การตรวจจับการบุกรักและการตอบสนองด้วย Wazuh
+## Introduction
+โปรเจ็คนี้สร้างเพื่อทดสอบการตรวจจับการบุกรุกและการวิเคราะห์วิธีการด้วย Wazuh
+## Setup
+1. Setup Wazuh on Ubantu 22.04 as a Wazuh Server
+   Step
+3. Setup PC (Windows10) as a Wazuh Agent
+
+ 
 รองรับการติดตั้งบน
 Red Hat Enterprise Linux 7, 8, 9; 
 CentOS 7, 8; 
@@ -79,4 +87,19 @@ PS C:\WINDOWS\system32>
 PS C:\WINDOWS\system32> NET START WazuhSvc
 The Wazuh service is starting.
 The Wazuh service was started successfully.
+
+
+เช็คการ Connect ของ My_PC
+jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
+[sudo] password for jakkrinsec:
+2025/04/29 11:14:22 sca: INFO: Starting evaluation of policy: '/var/ossec/ruleset/sca/cis_ubuntu22-04.yml'
+2025/04/29 11:14:22 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+2025/04/29 11:14:26 sca: INFO: Evaluation finished for policy '/var/ossec/ruleset/sca/cis_ubuntu22-04.yml'
+2025/04/29 11:14:26 sca: INFO: Security Configuration Assessment scan finished. Duration: 4 seconds.
+2025/04/29 11:14:47 rootcheck: INFO: Ending rootcheck scan.
+2025/04/29 11:44:36 wazuh-authd: INFO: New connection from 192.168.1.101
+2025/04/29 11:44:36 wazuh-authd: INFO: Received request for a new agent (My_PC) from: 192.168.1.101
+2025/04/29 11:44:36 wazuh-authd: INFO: Agent key generated for 'My_PC' (requested by any)
+2025/04/29 11:44:40 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
+2025/04/29 11:44:40 wazuh-remoted: INFO: (1410): Reading authentication keys file.
 
