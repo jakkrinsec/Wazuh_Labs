@@ -1,28 +1,39 @@
-# การตรวจจับการบุกรักและการตอบสนองด้วย Wazuh
-## 1.Introduction
-โปรเจ็คนี้สร้างเพื่อทดสอบการตรวจจับการบุกรุกและการวิเคราะห์วิธีการด้วย Wazuh
-## Setup
-### 1. Requirement of Wazuh
-- Red Hat Enterprise Linux 7, 8, 9; 
-- CentOS 7, 8; 
-- Amazon Linux 2; 
-- Ubuntu 16.04, 18.04, 20.04, 22.04.
-โดยเราจะเลือก ติดตั้งบน Ubantu 22.04
-### 1. ติดตั้ง Ubantu 22.04 บน Virtual Box
-- ดาวน์โหลด Ubuntu Server 20.04 LTS ISO จาก https://ubuntu.com/download/server
-- เริ่มต้น VM และเลือกไฟล์ ISO ที่ดาวน์โหลดเป็น optical drive
-- ทำตามขั้นตอนการติดตั้ง Ubuntu Server (เลือกติดตั้ง OpenSSH Server ด้วย)
-- หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
+# Wazuh Labs – Blue Team Practical
+
+> รวม Lab การใช้งาน Wazuh สำหรับการเรียนรู้ด้าน Blue Team / SOC Operations  
+> จัดทำโดย: [jakkrinSec](https://github.com/jakkrinSec)
+
+## Introduction
+โปรเจกต์นี้จัดทำขึ้นเพื่อทดสอบและฝึกฝนการใช้งาน **Wazuh** สำหรับวัตถุประสงค์ด้านความมั่นคงปลอดภัยไซเบอร์  
+โดยเฉพาะในด้าน **การตรวจจับการบุกรุก (Intrusion Detection)** และ **การตอบสนองเหตุการณ์ (Incident Response)**
+
+## Before You Start – System Setup
+### 1. Operating System Requirements
+Wazuh รองรับ OS:
+  - Red Hat Enterprise Linux 7, 8, 9
+  - CentOS 7, 8
+  - Amazon Linux 2
+  - Ubuntu 16.04, 18.04, 20.04, **22.04 (แนะนำ)**
+> ในโปรเจกต์นี้เลือกใช้ **Ubuntu 22.04 Server** ที่ติดตั้งบน VirtualBox
+
+### 2. ติดตั้ง Ubuntu 22.04 บน VirtualBox
+1. ดาวน์โหลด ISO:  
+   [Ubuntu Server 22.04 LTS](https://ubuntu.com/download/server)
+2. สร้าง VM และแนบ ISO เป็น Optical Drive
+3. ติดตั้ง Ubuntu Server (เลือก OpenSSH Server)
+4. หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
 ``` bash
 sudo apt update && sudo apt upgrade -y
 ```
-### 2. ติดตั้ง Wazuh Server
-  #### 2.1 ติดตั้งเครื่องมือที่จำเป็น
+   
+
+### 3. ติดตั้ง Wazuh Server (All-in-one)
+  #### 3.1 ติดตั้งเครื่องมือที่จำเป็น
   ``` bash
   sudo apt install curl apt-transport-https unzip wget gnupg -y
   ```
   
-  #### 2.2 ดาวน์โหลดและรัน Wazuh Installation Assistant
+  #### 3.2 ดาวน์โหลดและรัน Wazuh Installation Assistant
   ``` bash
   # ดาวน์โหลดสคริปต์ติดตั้ง
   curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
@@ -34,11 +45,10 @@ sudo apt update && sudo apt upgrade -y
   sudo ./wazuh-install.sh -a
   ```
   
-### 3. ล็อคอิน Wazuh Dashboard
-  - เปิดเว็บบราวเซอร์บนเครื่องโฮสต์
-  - เข้าถึง https://[IP-ของ-VM]
-  - ยอมรับความเสี่ยงเกี่ยวกับใบรับรองที่ลงนามด้วยตนเอง (self-signed certificate)
-  - ล็อกอินด้วยข้อมูลที่แสดงในเทอร์มินัลหลังการติดตั้ง
+### 4. เข้าสู่ Wazuh Dashboard
+  - เปิดเว็บบราวเซอร์ เข้าไปที่ https://[IP-ของ-Wazuh]
+  - ยอมรับ (self-signed certificate)
+  - ใช้ Username/Password ที่แสดงหลังติดตั้ง ตัวอย่าง
   ``` bash
   29/04/2025 11:15:55 INFO: --- Summary ---
   29/04/2025 11:15:55 INFO: You can access the web interface https://<wazuh-dashboard-ip>:443
@@ -46,21 +56,28 @@ sudo apt update && sudo apt upgrade -y
       Password: 5ED5fSka*2nE5?xw6?gE7Yuw8NT2H.il
   29/04/2025 11:15:55 INFO: Installation finished
   ```
-  หน้าเว็บ Login
+  > User: admin
+  > Password: 5ED5fSka*2nE5?xw6?gE7Yuw8NT2H.il
+
+  ตัวอย่างหน้า Login
   ![image](https://github.com/user-attachments/assets/34bdbd6d-d204-4ee2-88a0-de6b6471eb22)
 
-### 4. การติดตั้ง Wazuh Agent บน Windows 10
- - ไปที่ Wazuh Dashboard > Agents > Deploy new agent และทำตามคำแนะนำ
+### 5. ติดตั้ง Wazuh Agent บน Windows 10
+ - ไปที่ Wazuh Dashboard > Agents > Deploy 
+ - เลือกระบบปฏิบัติการ → ทำตามคำแนะนำการติดตั้ง
+ - ตัวอย่างหน้าจอ:
   ![image](https://github.com/user-attachments/assets/41bc29c4-ecb8-4102-bdfb-612eaa1a25e1)
   ![image](https://github.com/user-attachments/assets/5e0fd02f-9114-4b1c-b0b9-c989c5b77169)
 
-### 5. ตรวจสอบการเชื่อมต่อ Agent
- - ใน Wazuh Dashboard ไปที่ "Agents"
- - ตรวจสอบว่า Agent ที่ติดตั้งแสดงสถานะ "Active"
+### 6. ตรวจสอบการเชื่อมต่อ Agent
+ - ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active
    ![image](https://github.com/user-attachments/assets/8ef04b00-63cf-4746-a6b1-e6a409cbe446) 
- - ตรวจสอบการเชื่อมต่อผ่าน Wazuh
+ - หรือดู Log ที่ Wazuh Server:
 ``` bash
 jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
+```
+- ตัวอย่าง Log:
+``` bash
 [sudo] password for jakkrinsec:
 2025/04/29 11:44:36 wazuh-authd: INFO: New connection from 192.168.1.101
 2025/04/29 11:44:36 wazuh-authd: INFO: Received request for a new agent (My_PC) from: 192.168.1.101
