@@ -9,31 +9,30 @@
 
 ## Before You Start – System Setup
 ### 1. Operating System Requirements
-Wazuh รองรับ OS:
-  - Red Hat Enterprise Linux 7, 8, 9
-  - CentOS 7, 8
-  - Amazon Linux 2
-  - Ubuntu 16.04, 18.04, 20.04, **22.04 (แนะนำ)**
-> ในโปรเจกต์นี้เลือกใช้ **Ubuntu 22.04 Server** ที่ติดตั้งบน VirtualBox
+  - Wazuh รองรับ OS:
+    - Red Hat Enterprise Linux 7, 8, 9
+    - CentOS 7, 8
+    - Amazon Linux 2
+    - Ubuntu 16.04, 18.04, 20.04, **22.04 (แนะนำ)**
+  > ในโปรเจกต์นี้เลือกใช้ **Ubuntu 22.04 Server** ที่ติดตั้งบน VirtualBox
 
 ### 2. ติดตั้ง Ubuntu 22.04 บน VirtualBox
-1. ดาวน์โหลด ISO:  
+  - ดาวน์โหลด ISO:  
    [Ubuntu Server 22.04 LTS](https://ubuntu.com/download/server)
-2. สร้าง VM และแนบ ISO เป็น Optical Drive
-3. ติดตั้ง Ubuntu Server (เลือก OpenSSH Server)
-4. หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
-``` bash
-sudo apt update && sudo apt upgrade -y
-```
+  - สร้าง VM และแนบ ISO เป็น Optical Drive
+  - ติดตั้ง Ubuntu Server (เลือก OpenSSH Server)
+  - หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
+  ``` bash
+  sudo apt update && sudo apt upgrade -y
+  ```
    
-
 ### 3. ติดตั้ง Wazuh Server (All-in-one)
-  #### 3.1 ติดตั้งเครื่องมือที่จำเป็น
+  - ติดตั้งเครื่องมือที่จำเป็น
   ``` bash
   sudo apt install curl apt-transport-https unzip wget gnupg -y
   ```
   
-  #### 3.2 ดาวน์โหลดและรัน Wazuh Installation Assistant
+  - ดาวน์โหลดและรัน Wazuh Installation Assistant
   ``` bash
   # ดาวน์โหลดสคริปต์ติดตั้ง
   curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
@@ -73,20 +72,20 @@ sudo apt update && sudo apt upgrade -y
  - ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active
    ![image](https://github.com/user-attachments/assets/8ef04b00-63cf-4746-a6b1-e6a409cbe446) 
  - หรือดู Log ที่ Wazuh Server:
-``` bash
-jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
-```
-- ตัวอย่าง Log:
-``` bash
-[sudo] password for jakkrinsec:
-2025/04/29 11:44:36 wazuh-authd: INFO: New connection from 192.168.1.101
-2025/04/29 11:44:36 wazuh-authd: INFO: Received request for a new agent (My_PC) from: 192.168.1.101
-2025/04/29 11:44:36 wazuh-authd: INFO: Agent key generated for 'My_PC' (requested by any)
-2025/04/29 11:44:40 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
-2025/04/29 11:44:40 wazuh-remoted: INFO: (1410): Reading authentication keys file.
-```
+  ``` bash
+  jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
+  ```
+  - ตัวอย่าง Log:
+  ``` bash
+  [sudo] password for jakkrinsec:
+  2025/04/29 11:44:36 wazuh-authd: INFO: New connection from 192.168.1.101
+  2025/04/29 11:44:36 wazuh-authd: INFO: Received request for a new agent (My_PC) from: 192.168.1.101
+  2025/04/29 11:44:36 wazuh-authd: INFO: Agent key generated for 'My_PC' (requested by any)
+  2025/04/29 11:44:40 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
+  2025/04/29 11:44:40 wazuh-remoted: INFO: (1410): Reading authentication keys file.
+  ```
 
----
+  ---
 
 ## Lab Contents
 | Lab | หัวข้อ | รายละเอียด |
