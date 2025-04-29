@@ -8,14 +8,27 @@
 - ทำตามขั้นตอนการติดตั้ง Ubuntu Server (เลือกติดตั้ง OpenSSH Server ด้วย)
 - หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
   ``` bash
-     sudo apt update && sudo apt upgrade -y
-Setup Wazuh on Ubantu 22.04 as a Wazuh Server
-- Step
-   - หลังจากติดตั้ง Ubantu บน Virtual Box สำเร็จ ทำการล็อคอินและอัพเดต
-     ``` bash
-     sudo apt update && sudo apt upgrade -y
-     
-2. Setup PC (Windows10) as a Wazuh Agent
+  sudo apt update && sudo apt upgrade -y
+  ```
+
+### 2. ติดตั้ง Wazuh Server
+  #### 2.1 ติดตั้งเครื่องมือที่จำเป็น
+  ``` bash
+  sudo apt install curl apt-transport-https unzip wget gnupg -y
+  ```
+  #### 2.2 ดาวน์โหลดและรัน Wazuh Installation Assistant
+  ``` bash
+  # ดาวน์โหลดสคริปต์ติดตั้ง
+  curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
+
+  # ให้สิทธิ์ในการรันสคริปต์
+  chmod +x wazuh-install.sh
+
+  # รันสคริปต์ติดตั้งแบบ All-in-one (Wazuh Server + Indexer + Dashboard)
+  sudo ./wazuh-install.sh -a
+  ```
+#### 2.2 
+
 
  
 รองรับการติดตั้งบน
