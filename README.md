@@ -60,3 +60,23 @@ sudo ./wazuh-install.sh -a
     Password: 5ED5fSka*2nE5?xw6?gE7Yuw8NT2H.il
 29/04/2025 11:15:55 INFO: Installation finished.
 
+
+![image](https://github.com/user-attachments/assets/34bdbd6d-d204-4ee2-88a0-de6b6471eb22)
+
+ขั้นตอนที่ 4: ติดตั้ง Wazuh Agent บนเครื่องโฮสต์
+สำหรับ Windows
+ไปที่ Wazuh Dashboard > Agents > Deploy new agent
+เลือก Windows และทำตามคำแนะนำสำหรับการดาวน์โหลดและติดตั้ง
+![image](https://github.com/user-attachments/assets/31f00d7e-8229-44e1-895e-424316baa8f4)
+
+![image](https://github.com/user-attachments/assets/41bc29c4-ecb8-4102-bdfb-612eaa1a25e1)
+![image](https://github.com/user-attachments/assets/5e0fd02f-9114-4b1c-b0b9-c989c5b77169)
+
+
+PS C:\WINDOWS\system32> Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.5-1.msi -OutFile ${env.tmp}\wazuh-agent; msiexec.exe /i ${env.tmp}\wazuh-agent /q WAZUH_MANAGER='192.168.1.102' WAZUH_AGENT_NAME='My_PC' WAZUH_REGISTRATION_SERVER='192.168.1.102'
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> NET START WazuhSvc
+The Wazuh service is starting.
+The Wazuh service was started successfully.
+
