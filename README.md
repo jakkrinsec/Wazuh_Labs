@@ -2,20 +2,26 @@
 ## Introduction
 โปรเจ็คนี้สร้างเพื่อทดสอบการตรวจจับการบุกรุกและการวิเคราะห์วิธีการด้วย Wazuh
 ## Setup
+### 1. Requirement of Wazuh
+- Red Hat Enterprise Linux 7, 8, 9; 
+- CentOS 7, 8; 
+- Amazon Linux 2; 
+- Ubuntu 16.04, 18.04, 20.04, 22.04.
+โดยเราจะเลือก ติดตั้งบน Ubantu 22.04
 ### 1. ติดตั้ง Ubantu 22.04 บน Virtual Box
 - ดาวน์โหลด Ubuntu Server 20.04 LTS ISO จาก https://ubuntu.com/download/server
 - เริ่มต้น VM และเลือกไฟล์ ISO ที่ดาวน์โหลดเป็น optical drive
 - ทำตามขั้นตอนการติดตั้ง Ubuntu Server (เลือกติดตั้ง OpenSSH Server ด้วย)
 - หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
-  ``` bash
-  sudo apt update && sudo apt upgrade -y
-  ```
-
+``` bash
+sudo apt update && sudo apt upgrade -y
+```
 ### 2. ติดตั้ง Wazuh Server
   #### 2.1 ติดตั้งเครื่องมือที่จำเป็น
   ``` bash
   sudo apt install curl apt-transport-https unzip wget gnupg -y
   ```
+  
   #### 2.2 ดาวน์โหลดและรัน Wazuh Installation Assistant
   ``` bash
   # ดาวน์โหลดสคริปต์ติดตั้ง
@@ -27,8 +33,31 @@
   # รันสคริปต์ติดตั้งแบบ All-in-one (Wazuh Server + Indexer + Dashboard)
   sudo ./wazuh-install.sh -a
   ```
-#### 2.2 
+  
+### 3 ล็อคอิน Wazuh Dashboard
+  - เปิดเว็บบราวเซอร์บนเครื่องโฮสต์
+  - เข้าถึง https://[IP-ของ-VM]
+  - ยอมรับความเสี่ยงเกี่ยวกับใบรับรองที่ลงนามด้วยตนเอง (self-signed certificate)
+  - ล็อกอินด้วยข้อมูลที่แสดงในเทอร์มินัลหลังการติดตั้ง
+  ``` bash
+  29/04/2025 11:15:55 INFO: --- Summary ---
+  29/04/2025 11:15:55 INFO: You can access the web interface https://<wazuh-dashboard-ip>:443
+      User: admin
+      Password: 5ED5fSka*2nE5?xw6?gE7Yuw8NT2H.il
+  29/04/2025 11:15:55 INFO: Installation finished
+  ```
+  หน้าเว็บ Login
+  ![image](https://github.com/user-attachments/assets/34bdbd6d-d204-4ee2-88a0-de6b6471eb22)
 
+### 4 การติดตั้ง Wazuh Agent บน Windows 10
+ - ไปที่ Wazuh Dashboard > Agents > Deploy new agent และทำตามคำแนะนำ
+  ![image](https://github.com/user-attachments/assets/41bc29c4-ecb8-4102-bdfb-612eaa1a25e1)
+  ![image](https://github.com/user-attachments/assets/5e0fd02f-9114-4b1c-b0b9-c989c5b77169)
+
+### 5 ตรวจสอบการเชื่อมต่อ Agent
+ - ใน Wazuh Dashboard ไปที่ "Agents"
+ - ตรวจสอบว่า Agent ที่ติดตั้งแสดงสถานะ "Active"
+  ![image](https://github.com/user-attachments/assets/8ef04b00-63cf-4746-a6b1-e6a409cbe446)
 
  
 รองรับการติดตั้งบน
@@ -38,18 +67,8 @@ Amazon Linux 2;
 Ubuntu 16.04, 18.04, 20.04, 22.04.
 โดยเราจะเลือก ติดตั้งบน Ubantu 22.04
 
-ขั้นตอนที่ 1: เตรียมระบบ Ubuntu
-หลังติดตั้งเสร็จ ล็อคอินและอัพเดต
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl apt-transport-https unzip wget gnupg openssh-server -y
 
-ขั้นตอนที่ 2: ดาวน์โหลดและรัน Wazuh Installation Assistant
-# ดาวน์โหลดสคริปต์ติดตั้ง
-curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
-# ให้สิทธิ์ในการรันสคริปต์
-chmod +x wazuh-install.sh
-# รันสคริปต์ติดตั้งแบบ All-in-one (Wazuh Server + Indexer + Dashboard)
-sudo ./wazuh-install.sh -a
+
 
 
 หลังจากติดตั้งเสร็จ จะได้ Username & Password มา
@@ -103,6 +122,7 @@ sudo ./wazuh-install.sh -a
 
 ![image](https://github.com/user-attachments/assets/41bc29c4-ecb8-4102-bdfb-612eaa1a25e1)
 ![image](https://github.com/user-attachments/assets/5e0fd02f-9114-4b1c-b0b9-c989c5b77169)
+
 
 
 PS C:\WINDOWS\system32> Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.5-1.msi -OutFile ${env.tmp}\wazuh-agent; msiexec.exe /i ${env.tmp}\wazuh-agent /q WAZUH_MANAGER='192.168.1.102' WAZUH_AGENT_NAME='My_PC' WAZUH_REGISTRATION_SERVER='192.168.1.102'
