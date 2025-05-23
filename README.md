@@ -62,7 +62,13 @@
   ตัวอย่างหน้า Login
   ![image](https://github.com/user-attachments/assets/34bdbd6d-d204-4ee2-88a0-de6b6471eb22)
 
-### 5. ติดตั้ง Wazuh Agent บน Windows 10
+### 5. ติดตั้ง Windows 11
+  - VirtualBox (ดาวน์โหลดได้ที่: https://www.virtualbox.org/)
+  - Windows 11 ISO (ดาวน์โหลดจากเว็บ Microsoft: https://www.microsoft.com/software-download/windows11)
+  - RAM อย่างน้อย 4 GB และพื้นที่ว่างในเครื่อง 30+ GB
+  ![image](https://github.com/user-attachments/assets/a17b61ab-7d4d-4b3e-9178-6966a05e1a67)
+
+### 6.ติดตั้ง Wazuh Agent บน Windows 11
  - ไปที่ Wazuh Dashboard > Agents > Deploy 
  - เลือกระบบปฏิบัติการ → ทำตามคำแนะนำการติดตั้ง
  - ตัวอย่างหน้าจอ:
