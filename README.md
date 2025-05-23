@@ -106,6 +106,7 @@
   - เลือกระบบปฏิบัติการ → Linux(DEB amd64)
   - ทำตามคำแนะนำการติดตั้ง
   - ตัวอย่างหน้าจอ:
+    
     ![image](https://github.com/user-attachments/assets/1ca2bea0-7d1f-442e-bfc6-19dcd50babf6)
     ![image](https://github.com/user-attachments/assets/a8c102e2-0e56-4c1a-9321-0d9c52692bb7)
 
