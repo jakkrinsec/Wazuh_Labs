@@ -20,6 +20,7 @@
   - ดาวน์โหลด ISO:  
    [Ubuntu Server 22.04 LTS](https://ubuntu.com/download/server)
   - สร้าง VM และแนบ ISO เป็น Optical Drive
+  ![image](https://github.com/user-attachments/assets/b35d13fb-d9a4-43eb-9e1d-17e9e338a182)
   - ติดตั้ง Ubuntu Server (เลือก OpenSSH Server)
   - หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
   ``` bash
