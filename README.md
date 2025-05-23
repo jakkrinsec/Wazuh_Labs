@@ -21,7 +21,7 @@
    [Ubuntu Server 22.04 LTS](https://ubuntu.com/download/server)
   - สร้าง VM และแนบ ISO เป็น Optical Drive
   ![image](https://github.com/user-attachments/assets/b35d13fb-d9a4-43eb-9e1d-17e9e338a182)
-  - ติดตั้ง Ubuntu Server (เลือก OpenSSH Server)
+  - ติดตั้ง Ubuntu Server
   - หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
   ``` bash
   sudo apt update && sudo apt upgrade -y
@@ -50,14 +50,14 @@
   - ยอมรับ (self-signed certificate)
   - ใช้ Username/Password ที่แสดงหลังติดตั้ง ตัวอย่าง
   ``` bash
-  29/04/2025 11:15:55 INFO: --- Summary ---
-  29/04/2025 11:15:55 INFO: You can access the web interface https://<wazuh-dashboard-ip>:443
-      User: admin
-      Password: 5ED5fSka*2nE5?xw6?gE7Yuw8NT2H.il
-  29/04/2025 11:15:55 INFO: Installation finished
+  23/05/2025 09:00:01 INFO: --- Summary ---
+  23/05/2025 09:00:01 INFO: You can access the web interface https://<wazuh-dashboard-ip>:443
+    User: admin
+    Password: D7S.WdFYGs1nUl240vcyYggQ6s?XHSTU
+  23/05/2025 09:00:01 INFO: Installation finished.
   ```
   > User: admin
-  > Password: 5ED5fSka*2nE5?xw6?gE7Yuw8NT2H.il
+  > Password: D7S.WdFYGs1nUl240vcyYggQ6s?XHSTU
 
   ตัวอย่างหน้า Login
   ![image](https://github.com/user-attachments/assets/34bdbd6d-d204-4ee2-88a0-de6b6471eb22)
