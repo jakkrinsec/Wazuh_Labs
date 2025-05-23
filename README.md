@@ -79,8 +79,10 @@
    ![image](https://github.com/user-attachments/assets/c5bcfa22-8cb5-4a61-a76b-6261fa7743ec)
 
 
-### 6. ตรวจสอบการเชื่อมต่อ Agent
+### 6. ตรวจสอบการเชื่อมต่อ Windows11 - Agent
  - ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active
+   ![image](https://github.com/user-attachments/assets/8bcf3556-31e1-4064-9024-f7d496dbd70c)
+
    ![image](https://github.com/user-attachments/assets/8ef04b00-63cf-4746-a6b1-e6a409cbe446) 
  - หรือดู Log ที่ Wazuh Server:
   ``` bash
