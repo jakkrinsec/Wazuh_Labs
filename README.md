@@ -7,6 +7,8 @@
 โปรเจกต์นี้จัดทำขึ้นเพื่อทดสอบและฝึกฝนการใช้งาน **Wazuh** สำหรับวัตถุประสงค์ด้านความมั่นคงปลอดภัยไซเบอร์  
 โดยเฉพาะในด้าน **การตรวจจับการบุกรุก (Intrusion Detection)** และ **การตอบสนองเหตุการณ์ (Incident Response)**
 
+## Layout
+
 ## Before You Start – System Setup
 ### 1. Operating System Requirements
   - Wazuh รองรับ OS:
