@@ -72,6 +72,7 @@
  - ไปที่ Wazuh Dashboard > Agents > Deploy 
  - เลือกระบบปฏิบัติการ → ทำตามคำแนะนำการติดตั้ง
  - ตัวอย่างหน้าจอ:
+
    ![image](https://github.com/user-attachments/assets/48a52024-b667-41ab-bae4-3828096adac8)
    ![image](https://github.com/user-attachments/assets/86364b3b-ea6c-4bd8-8240-385b6c9f0421)
 
