@@ -56,8 +56,8 @@
     Password: D7S.WdFYGs1nUl240vcyYggQ6s?XHSTU
   23/05/2025 09:00:01 INFO: Installation finished.
   ```
-  > User: admin
-  > Password: D7S.WdFYGs1nUl240vcyYggQ6s?XHSTU
+  - User: admin
+  - Password: D7S.WdFYGs1nUl240vcyYggQ6s?XHSTU
 
   ตัวอย่างหน้า Login
   ![image](https://github.com/user-attachments/assets/34bdbd6d-d204-4ee2-88a0-de6b6471eb22)
