@@ -83,19 +83,22 @@
  - ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active
    ![image](https://github.com/user-attachments/assets/8bcf3556-31e1-4064-9024-f7d496dbd70c)
 
-   ![image](https://github.com/user-attachments/assets/8ef04b00-63cf-4746-a6b1-e6a409cbe446) 
  - หรือดู Log ที่ Wazuh Server:
   ``` bash
   jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
   ```
   - ตัวอย่าง Log:
   ``` bash
-  [sudo] password for jakkrinsec:
-  2025/04/29 11:44:36 wazuh-authd: INFO: New connection from 192.168.1.101
-  2025/04/29 11:44:36 wazuh-authd: INFO: Received request for a new agent (My_PC) from: 192.168.1.101
-  2025/04/29 11:44:36 wazuh-authd: INFO: Agent key generated for 'My_PC' (requested by any)
-  2025/04/29 11:44:40 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
-  2025/04/29 11:44:40 wazuh-remoted: INFO: (1410): Reading authentication keys file.
+2025/05/23 15:50:25 sca: INFO: Security Configuration Assessment scan finished. Duration: 5 seconds.
+2025/05/23 15:50:54 rootcheck: INFO: Ending rootcheck scan.
+2025/05/23 16:50:21 wazuh-modulesd:syscollector: INFO: Starting evaluation.
+2025/05/23 16:50:31 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+2025/05/23 17:42:50 wazuh-authd: INFO: New connection from 192.168.1.201
+2025/05/23 17:42:50 wazuh-authd: INFO: Received request for a new agent (Windows11) from: 192.168.1.201
+2025/05/23 17:42:50 wazuh-authd: INFO: Agent key generated for 'Windows11' (requested by any)
+2025/05/23 17:42:57 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
+2025/05/23 17:42:57 wazuh-remoted: INFO: (1410): Reading authentication keys file.
+2025/05/23 17:43:12 wazuh-remoted: WARNING: Agent key already in use: agent ID '001'
   ```
 
   ---
