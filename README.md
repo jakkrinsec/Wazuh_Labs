@@ -76,6 +76,9 @@
    ![image](https://github.com/user-attachments/assets/48a52024-b667-41ab-bae4-3828096adac8)
    ![image](https://github.com/user-attachments/assets/86364b3b-ea6c-4bd8-8240-385b6c9f0421)
 
+   ![image](https://github.com/user-attachments/assets/c5bcfa22-8cb5-4a61-a76b-6261fa7743ec)
+
+
 ### 6. ตรวจสอบการเชื่อมต่อ Agent
  - ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active
    ![image](https://github.com/user-attachments/assets/8ef04b00-63cf-4746-a6b1-e6a409cbe446) 
