@@ -135,7 +135,7 @@
 ## Lab Contents
 | Lab | หัวข้อ | รายละเอียด |
 |-----|--------|------------|
-| 1   | File Integrity Monitoring (FIM) | ตรวจจับการเปลี่ยนแปลงไฟล์แบบ Real-time |
+| 1   | File Integrity Monitoring (FIM) | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
 | 2   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 
 
@@ -158,15 +158,6 @@
   ``` bash
   Restart-Service -Name wazuh
   ```
-#### 1.3 ตรวจสอบ Event บน Dashboard
-  - เข้าสู่ Wazuh Dashboard
-  - ไปที่เมนู Integrity Monitoring → Events
-  - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
-    - 550 - New file created
-    - 553 - File modified
-    - 554 - File deleted
-  - ตัวอย่าง Event:
-  ![image](https://github.com/user-attachments/assets/c1355698-a000-4c9b-99e9-1eff4c4cfa9a)
 
 ### 2. Ubuntu Endpoint
 #### 2.1 กำหนด Directory ที่ต้องการ Monitor
@@ -195,10 +186,6 @@
   - ตัวอย่าง Event: Ubantu  
     ![image](https://github.com/user-attachments/assets/fac4e647-10b7-423c-9bb8-0bf38ed776d1)
 
-
-
-
 ### Summary
-- ติดตั้งและตั้งค่า FIM ได้สำเร็จ
 - ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Realtime
-- ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID ที่เกี่ยวข้อง
+- ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID (550: New file Create, 553: File modified และ 554: File Delete)
