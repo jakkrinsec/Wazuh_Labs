@@ -11,8 +11,8 @@
 โปรเจกต์นี้ติดตั้งบน VirtualBox
 - [Install Ubantu 22.04 บน Virtual Box](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ubuntu-2204-%E0%B8%9A%E0%B8%99-virtualbox)
 - [Ubuntu 22.04 - Wazuh Server](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-wazuh-server-all-in-one)
-- Ubantu 22.04 - Ubuntu Agent
-- Windows11 - Windows Agent
+- [Ubantu 22.04 - Ubuntu Agent](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ubuntu-for-agent)
+- [Windows11 - Windows Agent](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-windows-11-for-agent)
   
 ## Lab Contents
 | Lab | หัวข้อ | รายละเอียด |
