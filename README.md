@@ -143,32 +143,22 @@
 ### Objective
 ทดสอบการตรวจสอบความสมบูรณ์ของไฟล์ (File Integrity Monitoring) โดยใช้ Wazuh Agent เพื่อตรวจจับการ **สร้าง**, **แก้ไข**, และ **ลบ** ไฟล์ในไดเรกทอรีที่กำหนด
 
-### Setup Instructions
-#### 1. กำหนด Directory ที่ต้องการ Monitor
-  - แก้ไขไฟล์ `ossec.conf` บนเครื่อง Agent:
-     - C:\Program Files (x86)\ossec-agent\ossec.conf
-  - ไปที่ section `<syscheck>` และเพิ่ม directory ที่ต้องการตรวจสอบแบบ Real-time:
+### Configuration
+#### 1. Windows11 Endpoint
+#### 1.1 กำหนด Directory ที่ต้องการ Monitor
+  - แก้ไขไฟล์ `ossec.conf` บนเครื่อง Agent เพื่อกำหนด Directory
+     - ไปที่ C:\Program Files (x86)\ossec-agent\ossec.conf
+  - ไปที่ section `<syscheck>` และเพิ่ม directory ที่ต้องการตรวจสอบแบบ Real-time
+    - ในตัวอย่างเลือก Monitor ที่ C:\Users\Jakkrinsec\DEMO Folder
   ``` bash
   <directories check_all="yes" report_changes="yes" realtime="yes">C:\Users\jakkr\Desktop</directories>
   ```
-#### 2. Restart Wazuh Agent 
+#### 1.2 Restart Wazuh Agent 
   - เปิด PowerShell ด้วยสิทธิ์ Administrator และรันคำสั่ง:
   ``` bash
   Restart-Service -Name wazuh
   ```
-#### 3. ตรวจสอบสถานะ Agent
-  - ตรวจสอบ Log บน Wazuh Server ด้วยคำสั่ง:
-  ``` bash
-  sudo tail -f /var/ossec/logs/ossec.log
-  ```
-  - ตัวอย่าง Log ที่เกี่ยวข้องกับ FIM:
-  ``` bash
-  2025/04/29 20:32:10 rootcheck: INFO: Ending rootcheck scan.
-  2025/04/29 20:32:20 wazuh-agent: INFO: (6009): File integrity monitoring scan ended.
-  2025/04/29 20:32:20 wazuh-agent: INFO: FIM sync module started.
-  2025/04/29 20:32:22 wazuh-agent: INFO: (6012): Real-time file integrity monitoring started.
-  ```
-#### 4. ตรวจสอบ Event บน Dashboard
+#### 1.3 ตรวจสอบ Event บน Dashboard
   - เข้าสู่ Wazuh Dashboard
   - ไปที่เมนู Integrity Monitoring → Events
   - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
@@ -176,7 +166,10 @@
     - 553 - File modified
     - 554 - File deleted
   - ตัวอย่าง Event:
-  ![image](https://github.com/user-attachments/assets/10263d37-613b-4abb-8360-cb50f2e2ca9d)
+  ![image](https://github.com/user-attachments/assets/c1355698-a000-4c9b-99e9-1eff4c4cfa9a)
+
+#### 2. Ubuntu Endpoint
+
 
 ### Summary
 - ติดตั้งและตั้งค่า FIM ได้สำเร็จ
