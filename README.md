@@ -169,6 +169,32 @@
   ![image](https://github.com/user-attachments/assets/c1355698-a000-4c9b-99e9-1eff4c4cfa9a)
 
 ### 2. Ubuntu Endpoint
+#### 2.1 กำหนด Directory ที่ต้องการ Monitor
+  - แก้ไขไฟล์ `ossec.conf` บนเครื่อง Agent เพื่อกำหนด Directory
+     - ไปที่ /var/ossec/etc/ossec.conf
+  - ไปที่ section `<syscheck>` และเพิ่ม directory ที่ต้องการตรวจสอบแบบ Real-time
+    - ในตัวอย่างเลือก Monitor ที่ C/home/jakkrinsec/DEMOFolder
+  ``` bash
+  <directories check_all="yes" report_changes="yes" realtime="yes">/home/jakkrinsec/DEMOFolder</directories>
+  ```
+#### 2.2 Restart Wazuh Agent 
+  - รันคำสั่ง:
+  ``` bash
+  sudo systemctl restart wazuh-agent
+  ```
+
+### 3 ตรวจสอบ Event บน Dashboard
+  - เข้าสู่ Wazuh Dashboard
+  - ไปที่เมนู Integrity Monitoring → Events
+  - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
+    - 550 - New file created
+    - 553 - File modified
+    - 554 - File deleted
+  - ตัวอย่าง Event: Windows11
+    ![image](https://github.com/user-attachments/assets/c1355698-a000-4c9b-99e9-1eff4c4cfa9a)
+  - ตัวอย่าง Event: Ubantu  
+    ![image](https://github.com/user-attachments/assets/fac4e647-10b7-423c-9bb8-0bf38ed776d1)
+
 
 
 
