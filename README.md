@@ -136,7 +136,7 @@
 | Lab | หัวข้อ | รายละเอียด |
 |-----|--------|------------|
 | 1   | [File Integrity Monitoring (FIM)](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-1--file-integrity-monitoring-fim) | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
-| 2   | Monitor Docker Event | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
+| 2   | [Monitor Docker Event](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-2--monitor-docker-event) | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
 | 3   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 
 
