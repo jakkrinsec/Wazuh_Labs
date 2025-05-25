@@ -136,7 +136,8 @@
 | Lab | หัวข้อ | รายละเอียด |
 |-----|--------|------------|
 | 1   | File Integrity Monitoring (FIM) | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
-| 2   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
+| 2   | Monitor Docker Event | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
+| 3   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 
 
 ## Lab 1 – File Integrity Monitoring (FIM)
@@ -187,6 +188,7 @@
 ### Summary
 - ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Realtime
 - ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID (550: New file Create, 553: File modified และ 554: File Delete)
+
 
 ## Lab 2 – Monitor Docker Event
 ### Objective
