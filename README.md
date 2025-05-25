@@ -8,7 +8,8 @@
 โดยเฉพาะในด้าน **การตรวจจับการบุกรุก (Intrusion Detection)** และ **การตอบสนองเหตุการณ์ (Incident Response)**
 
 ## System Setup
-โปรเจกต์นี้ติดตั้งบน Virtual Machine
+โปรเจกต์นี้ติดตั้งบน VirtualBox
+- Install Ubantu 22.04 บน Virtual Box
 - Ubuntu 22.04 - Wazuh Server
 - Ubantu 22.04 - Ubuntu Agent
 - Windows11 - Windows Agent
@@ -20,16 +21,7 @@
 | 2   | [Monitor Docker Event](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-2--monitor-docker-event) | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
 | 3   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 
- 
-### 1. Operating System Requirements
-  - Wazuh รองรับ OS:
-    - Red Hat Enterprise Linux 7, 8, 9
-    - CentOS 7, 8
-    - Amazon Linux 2
-    - Ubuntu 16.04, 18.04, 20.04, **22.04 (แนะนำ)**
-  > ในโปรเจกต์นี้เลือกใช้ **Ubuntu 22.04 Server** ที่ติดตั้งบน VirtualBox
-
-### 2. ติดตั้ง Ubuntu 22.04 บน VirtualBox
+### 1. ติดตั้ง Ubuntu 22.04 บน VirtualBox
   - ดาวน์โหลด ISO:  
    [Ubuntu Server 22.04 LTS](https://ubuntu.com/download/server)
   - สร้าง VM และแนบ ISO เป็น Optical Drive
