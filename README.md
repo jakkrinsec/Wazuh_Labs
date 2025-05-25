@@ -142,7 +142,6 @@
 ## Lab 1 – File Integrity Monitoring (FIM)
 ### Objective
 ทดสอบการตรวจสอบความสมบูรณ์ของไฟล์ (File Integrity Monitoring) โดยใช้ Wazuh Agent เพื่อตรวจจับการ **สร้าง**, **แก้ไข**, และ **ลบ** ไฟล์ในไดเรกทอรีที่กำหนด
-
 ### Configuration
 ### 1. Windows11 Endpoint
 #### 1.1 กำหนด Directory ที่ต้องการ Monitor
@@ -158,7 +157,6 @@
   ``` bash
   Restart-Service -Name wazuh
   ```
-
 ### 2. Ubuntu Endpoint
 #### 2.1 กำหนด Directory ที่ต้องการ Monitor
   - แก้ไขไฟล์ `ossec.conf` บนเครื่อง Agent เพื่อกำหนด Directory
@@ -168,13 +166,14 @@
   ``` bash
   <directories check_all="yes" report_changes="yes" realtime="yes">/home/jakkrinsec/DEMOFolder</directories>
   ```
-#### 2.2 Restart Wazuh Agent 
+#### 2.2 Restart Wazuh Agent เพื่อ Apply
   - รันคำสั่ง:
   ``` bash
   sudo systemctl restart wazuh-agent
   ```
-
-### 3 ตรวจสอบ Event บน Dashboard
+### 3 ทดสอบสร้างไฟล์ แก้ไข และลบ
+  - Create/edit/delete .txt file
+### 4 ตรวจสอบ Event บน Dashboard
   - เข้าสู่ Wazuh Dashboard
   - ไปที่เมนู Integrity Monitoring → Events
   - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
@@ -185,7 +184,6 @@
     ![image](https://github.com/user-attachments/assets/c1355698-a000-4c9b-99e9-1eff4c4cfa9a)
   - ตัวอย่าง Event: Ubantu  
     ![image](https://github.com/user-attachments/assets/fac4e647-10b7-423c-9bb8-0bf38ed776d1)
-
 ### Summary
 - ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Realtime
 - ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID (550: New file Create, 553: File modified และ 554: File Delete)
@@ -198,4 +196,59 @@
 #### 1. ติดตั้ง Docker and Python Docker Library
   ``` bash
   sudo apt install python3 python3-pip #ติดตั้ง Python and pip
+  pip3 install --upgrade pip #upgrade pip
+  curl -sSL https://get.docker.com/ | sh
+  sudo pip3 install docker==7.1.0 urllib3==1.26.20 requests==2.32.2
   ```
+#### 2. Enable Docker-listener
+  - แก้ไขไฟล์ /var/ossec/etc/ossec.conf โดยเพิ่มคำสั่ง:
+  ``` bash
+  <ossec_config>
+    <wodle name="docker-listener">
+      <interval>10m</interval>
+      <attempts>5</attempts>
+      <run_on_start>yes</run_on_start>
+      <disabled>no</disabled>
+    </wodle>
+  </ossec_config>
+  ```
+#### 3 Restart Wazuh Agent เพื่อ Apply
+  - รันคำสั่ง:
+  ``` bash
+  sudo systemctl restart wazuh-agent
+  ```
+#### 4 Pull an image, such as the NGINX image, and run a container
+``` bash
+sudo docker pull nginx #ดาวน์โหลด nginx image เวอร์ชันล่าสุดจาก Docker Hub
+sudo docker run -d -P --name nginx_container nginx #สร้างและรัน container จาก image ตั้งชื่อให้ container นี้ว่า nginx_container ใช้ image ชื่อ nginx ที่เราดาวน์โหลดมาก่อนหน้านี้
+sudo docker exec -it nginx_container cat /etc/passwd #แสดงรายชื่อ users ที่อยู่ใน container 
+sudo docker exec -it nginx_container /bin/bash #เข้าสู่ shell ภายใน container
+exit
+sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Login
+```
+#### 5 เข้า nginx ผ่าน Browser
+  - รันคำสั่ง:
+  ``` bash
+  sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Login
+  80/tcp -> 0.0.0.0:32768 #ตัวอย่างการ Reply
+  ```
+  - ตัวอย่างการเข้า nginx ผ่าน Browser
+  ![image](https://github.com/user-attachments/assets/21c27374-fd5d-49fa-b858-227ba706df82) 
+#### 6 ทดสอบแก้ไขหน้า Index
+  - รันคำสั่ง:
+  ``` bash
+  sudo docker exec -it nginx_container bash #ล็อคอินเข้า shell
+  cd /usr/share/nginx/html #ไปที่ directory html
+  echo "Hello from jakkrinsec" > index.html
+  ```
+  - ตัวอย่างการแก้ไขหน้า Index
+  ![image](https://github.com/user-attachments/assets/18c2f55d-59c0-4194-a522-dce66a8db8a0)
+#### 7 ตรวจสอบ Event บน Dashboard
+  - เข้าสู่ Wazuh Dashboard
+  - ไปที่เมนู Integrity Monitoring → Events (Filter rule.group:Docker)
+  - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
+    - 87907 - Command launched in container nginx_container
+    - 87924 - Container nginx_container received the action
+  ![image](https://github.com/user-attachments/assets/1e25fe10-4007-4016-9361-a08a730c6164)
+### Summary
+- ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval
