@@ -144,7 +144,7 @@
 ทดสอบการตรวจสอบความสมบูรณ์ของไฟล์ (File Integrity Monitoring) โดยใช้ Wazuh Agent เพื่อตรวจจับการ **สร้าง**, **แก้ไข**, และ **ลบ** ไฟล์ในไดเรกทอรีที่กำหนด
 
 ### Configuration
-#### 1. Windows11 Endpoint
+### 1. Windows11 Endpoint
 #### 1.1 กำหนด Directory ที่ต้องการ Monitor
   - แก้ไขไฟล์ `ossec.conf` บนเครื่อง Agent เพื่อกำหนด Directory
      - ไปที่ C:\Program Files (x86)\ossec-agent\ossec.conf
@@ -168,7 +168,8 @@
   - ตัวอย่าง Event:
   ![image](https://github.com/user-attachments/assets/c1355698-a000-4c9b-99e9-1eff4c4cfa9a)
 
-#### 2. Ubuntu Endpoint
+### 2. Ubuntu Endpoint
+
 
 
 ### Summary
