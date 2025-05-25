@@ -189,3 +189,13 @@
 ### Summary
 - ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Realtime
 - ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID (550: New file Create, 553: File modified และ 554: File Delete)
+
+## Lab 2 – Monitor Docker Event
+### Objective
+ทดสอบตรวจจับกิจกรรม เช่น การสร้าง ลบ หรือเปลี่ยนแปลงสถานะของคอนเทนเนอร์ และส่งข้อมูลไปยัง Wazuh server เพื่อวิเคราะห์และแสดงผลบนแดชบอร์ด โดยใช้โมดูล Docker-listener
+
+### Configuration
+#### 1. ติดตั้ง Docker and Python Docker Library
+  ``` bash
+  sudo apt install python3 python3-pip #ติดตั้ง Python and pip
+  ```
