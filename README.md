@@ -135,7 +135,7 @@
 ## Lab Contents
 | Lab | หัวข้อ | รายละเอียด |
 |-----|--------|------------|
-| 1   | File Integrity Monitoring (FIM) | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
+| 1   | [File Integrity Monitoring (FIM)] | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
 | 2   | Monitor Docker Event | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
 | 3   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 
