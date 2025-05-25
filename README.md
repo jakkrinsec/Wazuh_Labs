@@ -9,8 +9,8 @@
 
 ## System Setup
 โปรเจกต์นี้ติดตั้งบน VirtualBox
-- [Install Ubantu 22.04 บน Virtual Box](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#1-%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ubuntu-2204-%E0%B8%9A%E0%B8%99-virtualbox)
-- Ubuntu 22.04 - Wazuh Server
+- [Install Ubantu 22.04 บน Virtual Box](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ubuntu-2204-%E0%B8%9A%E0%B8%99-virtualbox)
+- [Ubuntu 22.04 - Wazuh Server](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-wazuh-server-all-in-one)
 - Ubantu 22.04 - Ubuntu Agent
 - Windows11 - Windows Agent
   
@@ -64,19 +64,21 @@
 ### ติดตั้ง Windows 11 for agent
   - Windows 11 ISO (ดาวน์โหลดจากเว็บ Microsoft: https://www.microsoft.com/software-download/windows11)
   - RAM อย่างน้อย 4 GB และพื้นที่ว่างในเครื่อง 30+ GB
+
   ![image](https://github.com/user-attachments/assets/a17b61ab-7d4d-4b3e-9178-6966a05e1a67)
   - ติดตั้ง Wazuh Agent บน Windows 11
     - ไปที่ Wazuh Dashboard > Agents > Deploy
     - เลือกระบบปฏิบัติการ → Windows
     - ทำตามคำแนะนำการติดตั้ง
-    - ตัวอย่างหน้าจอ:
-     ![image](https://github.com/user-attachments/assets/48a52024-b667-41ab-bae4-3828096adac8)
-     ![image](https://github.com/user-attachments/assets/86364b3b-ea6c-4bd8-8240-385b6c9f0421)
-
-     ![image](https://github.com/user-attachments/assets/c5bcfa22-8cb5-4a61-a76b-6261fa7743ec)
-  - ตรวจสอบการเชื่อมต่อ Windows11 - Agent
-  - ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active
-     ![image](https://github.com/user-attachments/assets/8bcf3556-31e1-4064-9024-f7d496dbd70c)
+      
+    ![image](https://github.com/user-attachments/assets/48a52024-b667-41ab-bae4-3828096adac8)
+    ![image](https://github.com/user-attachments/assets/86364b3b-ea6c-4bd8-8240-385b6c9f0421)
+    - ตัวอย่างหน้าจอ powershell เมื่อติดตั้งสำเร็จ:
+    
+    ![image](https://github.com/user-attachments/assets/c5bcfa22-8cb5-4a61-a76b-6261fa7743ec)
+  - ตรวจสอบการเชื่อมต่อ Windows11 - Agent (ไปที่เมนู Agents → ตรวจสอบว่า Agent แสดงสถานะ Active)
+  
+    ![image](https://github.com/user-attachments/assets/8bcf3556-31e1-4064-9024-f7d496dbd70c)
   - หรือดู Log ที่ Wazuh Server:
   ``` bash
   jakkrinsec@WazuhServer:~$ sudo tail -f /var/ossec/logs/ossec.log
@@ -94,12 +96,15 @@
   2025/05/23 17:42:57 wazuh-remoted: INFO: (1410): Reading authentication keys file.
   2025/05/23 17:43:12 wazuh-remoted: WARNING: Agent key already in use: agent ID '001'
   ```
+<br/>
 
 ### ติดตั้ง Ubuntu for agent
-  - ดาวน์โหลด ISO:  
+  - ดาวน์โหลด ISO:
+
    [Ubuntu Server 22.04 LTS](https://ubuntu.com/download/server)
   - สร้าง VM และแนบ ISO เป็น Optical Drive
-  ![image](https://github.com/user-attachments/assets/b35d13fb-d9a4-43eb-9e1d-17e9e338a182)
+
+   ![image](https://github.com/user-attachments/assets/b35d13fb-d9a4-43eb-9e1d-17e9e338a182)
   - ติดตั้ง Ubuntu Server
   - หลังติดตั้งเสร็จ ล็อกอินและอัปเดตระบบ
   ``` bash
@@ -110,6 +115,7 @@
     - เลือกระบบปฏิบัติการ → Linux(DEB amd64)
     - ทำตามคำแนะนำการติดตั้ง
     - ตัวอย่างหน้าจอ:
+    
     ![image](https://github.com/user-attachments/assets/1ca2bea0-7d1f-442e-bfc6-19dcd50babf6)
     ![image](https://github.com/user-attachments/assets/a8c102e2-0e56-4c1a-9321-0d9c52692bb7)
   - ตรวจสอบการเชื่อมต่อ Ubuntu - Agent
@@ -121,17 +127,17 @@
     ```
     - ตัวอย่าง Log:
     ``` bash
-  2025/05/23 18:04:26 wazuh-modulesd:syscollector: INFO: Starting evaluation.
-  2025/05/23 18:04:26 wazuh-modulesd:syscollector: INFO: Evaluation finished.
-  2025/05/23 18:04:31 sca: INFO: Evaluation finished for policy '/var/ossec/ruleset/sca/cis_ubuntu22-04.yml'
-  2025/05/23 18:04:31 sca: INFO: Security Configuration Assessment scan finished. Duration: 5 seconds.
-  2025/05/23 18:05:05 rootcheck: INFO: Ending rootcheck scan.
-  2025/05/23 18:27:37 wazuh-authd: INFO: New connection from 192.168.1.202
-  2025/05/23 18:27:37 wazuh-authd: INFO: Received request for a new agent (Ubuntu) from: 192.168.1.202
-  2025/05/23 18:27:37 wazuh-authd: INFO: Agent key generated for 'Ubuntu' (requested by any)
-  2025/05/23 18:27:46 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
-  2025/05/23 18:27:46 wazuh-remoted: INFO: (1410): Reading authentication keys file.
-  ```
+    2025/05/23 18:04:26 wazuh-modulesd:syscollector: INFO: Starting evaluation.
+    2025/05/23 18:04:26 wazuh-modulesd:syscollector: INFO: Evaluation finished.
+    2025/05/23 18:04:31 sca: INFO: Evaluation finished for policy '/var/ossec/ruleset/sca/cis_ubuntu22-04.yml'
+    2025/05/23 18:04:31 sca: INFO: Security Configuration Assessment scan finished. Duration: 5 seconds.
+    2025/05/23 18:05:05 rootcheck: INFO: Ending rootcheck scan.
+    2025/05/23 18:27:37 wazuh-authd: INFO: New connection from 192.168.1.202
+    2025/05/23 18:27:37 wazuh-authd: INFO: Received request for a new agent (Ubuntu) from: 192.168.1.202
+    2025/05/23 18:27:37 wazuh-authd: INFO: Agent key generated for 'Ubuntu' (requested by any)
+    2025/05/23 18:27:46 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
+    2025/05/23 18:27:46 wazuh-remoted: INFO: (1410): Reading authentication keys file.
+    ```
 
 
 ## Lab 1 – File Integrity Monitoring (FIM)
