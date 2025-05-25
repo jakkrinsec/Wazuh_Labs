@@ -19,6 +19,7 @@
 |-----|--------|------------|
 | 1   | [File Integrity Monitoring (FIM)](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-1--file-integrity-monitoring-fim) | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
 | 2   | [Monitor Docker Event](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-2--monitor-docker-event) | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
+| 3   | Network IDS Integation]()||
 | 3   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 <br/>
 
@@ -143,6 +144,7 @@
 ## Lab 1 – File Integrity Monitoring (FIM)
 ### Objective
 ทดสอบการตรวจสอบความสมบูรณ์ของไฟล์ (File Integrity Monitoring) โดยใช้ Wazuh Agent เพื่อตรวจจับการ **สร้าง**, **แก้ไข**, และ **ลบ** ไฟล์ในไดเรกทอรีที่กำหนด
+
 ### Configuration
 ### 1. Windows11 Endpoint
 #### 1.1 กำหนด Directory ที่ต้องการ Monitor
@@ -257,3 +259,86 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
   ![image](https://github.com/user-attachments/assets/1e25fe10-4007-4016-9361-a08a730c6164)
 ### Summary
 - ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval
+<br/>
+
+## Lab 3 - Network IDS intergration
+### Objective
+ทดสอบการตรวจจับการบุกรุกเครือข่าย (Network Intrusion Detection System - NIDS) โดยใช้ Suricata
+
+### Configuration
+#### 1. ติดตั้ง Suricata บน Ubuntu Endpoint
+- รันคำสั่ง
+  ``` bash
+  sudo add-apt-repository ppa:oisf/suricata-stable
+  sudo apt-get update
+  sudo apt-get install suricata -y
+  ```
+#### 2. ดาวน์โหลด Emerging Threats Suricata ruleset
+- รันคำสั่ง
+  ``` bash
+  cd /tmp/ && curl -LO https://rules.emergingthreats.net/open/suricata-6.0.8/emerging.rules.tar.gz
+  sudo tar -xvzf emerging.rules.tar.gz && sudo mkdir /etc/suricata/rules && sudo mv rules/*.rules /etc/suricata/rules/
+  sudo chmod 640 /etc/suricata/rules/*.rules
+  ```
+#### 3. แก้ไขการตั้งค่า Suricata ที่ /etc/suricata/suricata.yaml
+  ``` bash
+  HOME_NET: "<UBUNTU_IP>"
+  EXTERNAL_NET: "any"
+  default-rule-path: /etc/suricata/rules
+  rule-files:
+  - "*.rules"
+  # Global stats configuration
+  stats:
+  enabled: yes
+  # Linux high speed capture support
+  af-packet:
+    - interface: enp0s3
+  ```
+#### 4. Restart the Suricata service เพื่อ Apply
+  ``` bash
+  sudo systemctl restart suricata
+  ```
+#### 5. แก้ไขการตั้งค่า Wazuh endpoint ที่ /var/ossec/etc/ossec.conf ให้สามารถอ่าน Suricata log ได้
+  ``` bash
+  <ossec_config>
+    <localfile>
+      <log_format>json</log_format>
+      <location>/var/log/suricata/eve.json</location>
+    </localfile>
+  </ossec_config>
+  ```
+#### 6. Restart Wazuh Agent เพื่อ Apply
+  - รันคำสั่ง:
+  ``` bash
+  sudo systemctl restart wazuh-agent
+  ```
+### Test case
+#### 1. Ping ไปยัง Ubuntu Endpoint
+  - ตัวอย่าง Log ที่ได้ (rule.groups: suricata) ผ่าน Dashboard
+
+    ![image](https://github.com/user-attachments/assets/066bdec6-4078-45ea-a625-07893e30f14c)
+  - ตัวอย่าง Log จากไฟล์
+    ``` bash
+    jakkrinsec@UbuntuAgent:/tmp$ sudo tail -f /var/log/suricata/fast.log
+    05/26/2025-03:46:41.418728  [**] [1:2100366:8] GPL ICMP_INFO PING *NIX [**] [Classification: Misc activity] [Priority: 3] {ICMP} 192.168.1.200:8 -> 192.168.1.202:0
+    05/26/2025-03:46:42.422776  [**] [1:2100366:8] GPL ICMP_INFO PING *NIX [**] [Classification: Misc activity] [Priority: 3] {ICMP} 192.168.1.200:8 -> 192.168.1.202:0
+    05/26/2025-03:46:43.447274  [**] [1:2100366:8] GPL ICMP_INFO PING *NIX [**] [Classification: Misc activity] [Priority: 3] {ICMP} 192.168.1.200:8 -> 192.168.1.202:0
+    05/26/2025-03:46:44.470983  [**] [1:2100366:8] GPL ICMP_INFO PING *NIX [**] [Classification: Misc activity] [Priority: 3] {ICMP} 192.168.1.200:8 -> 192.168.1.202:0
+    ```
+
+#### 2. Nmap ไปยัง Ubuntu Endpoint
+  - ตัวอย่าง Log ที่ได้ (rule.groups: suricata)
+
+    ![image](https://github.com/user-attachments/assets/e6b6af49-7dba-4f28-b592-3400a6c323fe)
+  - ตัวอย่าง Log จากไฟล์
+    ``` bash
+    jakkrinsec@UbuntuAgent:/tmp$ sudo tail -f /var/log/suricata/fast.log
+    05/26/2025-03:59:02.286024  [**] [1:2010937:3] ET SCAN Suspicious inbound to mySQL port 3306 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 192.168.1.200:51694 -> 192.168.1.202:3306
+    05/26/2025-03:59:02.289623  [**] [1:2010936:3] ET SCAN Suspicious inbound to Oracle SQL port 1521 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 192.168.1.200:36100 -> 192.168.1.202:1521
+    05/26/2025-03:59:02.302550  [**] [1:2010939:3] ET SCAN Suspicious inbound to PostgreSQL port 5432 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 192.168.1.200:55924 -> 192.168.1.202:5432
+    05/26/2025-03:59:02.309024  [**] [1:2002910:6] ET SCAN Potential VNC Scan 5800-5820 [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.1.200:60798 -> 192.168.1.202:5810
+    05/26/2025-03:59:02.314819  [**] [1:2010935:3] ET SCAN Suspicious inbound to MSSQL port 1433 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} 192.168.1.200:59282 -> 192.168.1.202:1433
+    ```
+### Summary
+- ตรวจจับการบุกรุกเครือข่าย (Network Intrusion Detection System - NIDS) โดยใช้ Suricata แบบ Realtime
+
