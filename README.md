@@ -1,6 +1,6 @@
 # Wazuh Labs – Blue Team Practical
 
-> รวม Lab การใช้งาน Wazuh สำหรับการเรียนรู้ด้าน Blue Team / SOC Operations  
+> รวม Lab การใช้งาน Wazuh สำหรับการเรียนรู้ด้าน Blue Team
 > จัดทำโดย: [jakkrinSec](https://github.com/jakkrinSec)
 
 ## Introduction
@@ -9,7 +9,7 @@
 
 ## System Setup
 โปรเจกต์นี้ติดตั้งบน VirtualBox
-- [Install Ubantu 22.04 บน Virtual Box]()
+- [Install Ubantu 22.04 บน Virtual Box](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#1-%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-ubuntu-2204-%E0%B8%9A%E0%B8%99-virtualbox)
 - Ubuntu 22.04 - Wazuh Server
 - Ubantu 22.04 - Ubuntu Agent
 - Windows11 - Windows Agent
