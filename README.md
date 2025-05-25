@@ -138,7 +138,7 @@
     2025/05/23 18:27:46 wazuh-remoted: INFO: (1409): Authentication file changed. Updating.
     2025/05/23 18:27:46 wazuh-remoted: INFO: (1410): Reading authentication keys file.
     ```
-
+<br/>
 
 ## Lab 1 – File Integrity Monitoring (FIM)
 ### Objective
@@ -188,7 +188,7 @@
 ### Summary
 - ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Realtime
 - ตรวจสอบ Event ได้จาก Wazuh Dashboard ด้วย Rule ID (550: New file Create, 553: File modified และ 554: File Delete)
-
+<br/>
 
 ## Lab 2 – Monitor Docker Event
 ### Objective
@@ -235,6 +235,7 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
   80/tcp -> 0.0.0.0:32768 #ตัวอย่างการ Reply
   ```
   - ตัวอย่างการเข้า nginx ผ่าน Browser
+
   ![image](https://github.com/user-attachments/assets/21c27374-fd5d-49fa-b858-227ba706df82) 
 #### 6 ทดสอบแก้ไขหน้า Index
   - รันคำสั่ง:
@@ -244,6 +245,7 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
   echo "Hello from jakkrinsec" > index.html
   ```
   - ตัวอย่างการแก้ไขหน้า Index
+
   ![image](https://github.com/user-attachments/assets/18c2f55d-59c0-4194-a522-dce66a8db8a0)
 #### 7 ตรวจสอบ Event บน Dashboard
   - เข้าสู่ Wazuh Dashboard
@@ -251,6 +253,7 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
   - ตรวจสอบเหตุการณ์ที่มี rule.id ดังนี้:
     - 87907 - Command launched in container nginx_container
     - 87924 - Container nginx_container received the action
+  
   ![image](https://github.com/user-attachments/assets/1e25fe10-4007-4016-9361-a08a730c6164)
 ### Summary
 - ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval
