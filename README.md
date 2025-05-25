@@ -9,7 +9,7 @@
 
 ## System Setup
 โปรเจกต์นี้ติดตั้งบน VirtualBox
-- Install Ubantu 22.04 บน Virtual Box
+- [Install Ubantu 22.04 บน Virtual Box]()
 - Ubuntu 22.04 - Wazuh Server
 - Ubantu 22.04 - Ubuntu Agent
 - Windows11 - Windows Agent
