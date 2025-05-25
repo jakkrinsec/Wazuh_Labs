@@ -19,8 +19,8 @@
 |-----|--------|------------|
 | 1   | [File Integrity Monitoring (FIM)](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-1--file-integrity-monitoring-fim) | ตรวจจับการเปลี่ยนแปลงไฟล์ใน Directory ที่กำหนดแบบ Real-time |
 | 2   | [Monitor Docker Event](https://github.com/jakkrinsec/Wazuh_Labs/blob/main/README.md#lab-2--monitor-docker-event) | ตรวจจับการเปลี่ยนแปลงใน Docker ที่กำหนดแบบตาม Interval |
-| 3   | Network IDS Integation]()||
-| 3   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
+| 3   | Network IDS Integation](https://github.com/jakkrinsec/Wazuh_Labs/edit/main/README.md#lab-3---network-ids-intergration)|ตรวจจับการบุกรุกเครือข่าย (Network Intrusion Detection System - NIDS) โดยใช้ Suricata แบบ Realtime|
+| 4   | ⏳ Soon... | กำลังจะเพิ่มเร็ว ๆ นี้ |
 <br/>
 
 ### ติดตั้ง Ubuntu 22.04 บน VirtualBox
