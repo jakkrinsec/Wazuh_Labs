@@ -170,7 +170,6 @@
   <directories check_all="yes" report_changes="yes" realtime="yes">/home/jakkrinsec/DEMOFolder</directories>
   ```
 #### 2.2 Restart Wazuh Agent เพื่อ Apply
-  - รันคำสั่ง:
   ``` bash
   sudo systemctl restart wazuh-agent
   ```
@@ -217,7 +216,6 @@
   </ossec_config>
   ```
 #### 3 Restart Wazuh Agent เพื่อ Apply
-  - รันคำสั่ง:
   ``` bash
   sudo systemctl restart wazuh-agent
   ```
@@ -231,7 +229,6 @@ exit
 sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Login
 ```
 #### 5 เข้า nginx ผ่าน Browser
-  - รันคำสั่ง:
   ``` bash
   sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Login
   80/tcp -> 0.0.0.0:32768 #ตัวอย่างการ Reply
@@ -240,7 +237,6 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
 
   ![image](https://github.com/user-attachments/assets/21c27374-fd5d-49fa-b858-227ba706df82) 
 #### 6 ทดสอบแก้ไขหน้า Index
-  - รันคำสั่ง:
   ``` bash
   sudo docker exec -it nginx_container bash #ล็อคอินเข้า shell
   cd /usr/share/nginx/html #ไปที่ directory html
@@ -267,14 +263,12 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
 
 ### Configuration
 #### 1. ติดตั้ง Suricata บน Ubuntu Endpoint
-- รันคำสั่ง
   ``` bash
   sudo add-apt-repository ppa:oisf/suricata-stable
   sudo apt-get update
   sudo apt-get install suricata -y
   ```
 #### 2. ดาวน์โหลด Emerging Threats Suricata ruleset
-- รันคำสั่ง
   ``` bash
   cd /tmp/ && curl -LO https://rules.emergingthreats.net/open/suricata-6.0.8/emerging.rules.tar.gz
   sudo tar -xvzf emerging.rules.tar.gz && sudo mkdir /etc/suricata/rules && sudo mv rules/*.rules /etc/suricata/rules/
@@ -308,7 +302,6 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
   </ossec_config>
   ```
 #### 6. Restart Wazuh Agent เพื่อ Apply
-  - รันคำสั่ง:
   ``` bash
   sudo systemctl restart wazuh-agent
   ```
@@ -342,3 +335,28 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
 ### Summary
 - ตรวจจับการบุกรุกเครือข่าย (Network Intrusion Detection System - NIDS) โดยใช้ Suricata แบบ Realtime
 
+## Lab 4 - Blocking a known malicious actor
+### Objective
+ทดสอบป้องกันจาก a known malicious actor
+
+### Configuration
+### 1. Ubuntu-Endpoint
+#### 1.1 ติดตั้ง Apache Web Server
+     ``` bash
+     sudo apt update
+     sudo apt install apache2 #ติดตั้ง Apache web server
+    ```
+#### 1.2 แก้ไขการตั้งค่า Wazuh endpoint ที่ /var/ossec/etc/ossec.conf ให้สามารถอ่าน log ได้
+     ``` bash
+     <localfile>
+       <log_format>syslog</log_format>
+       <location>/var/log/apache2/access.log</location>
+     </localfile>
+     ```
+#### 1.3 Restart Wazuh Agent เพื่อ Apply
+    - รันคำสั่ง:
+    ``` bash
+    sudo systemctl restart wazuh-agent
+    ```
+#### 1.4 ทดสอบเข้า Web server
+    ![image](https://github.com/user-attachments/assets/e654980c-8e04-4df8-933d-5657db7eaf98)
