@@ -342,21 +342,22 @@ sudo docker port nginx_container #ตรวจสอบ Port เพื่อ Log
 ### Configuration
 ### 1. Ubuntu-Endpoint
 #### 1.1 ติดตั้ง Apache Web Server
-     ``` bash
-     sudo apt update
-     sudo apt install apache2 #ติดตั้ง Apache web server
-    ```
+  ``` bash
+  sudo apt update
+  sudo apt install apache2 #ติดตั้ง Apache web server
+  ```
 #### 1.2 แก้ไขการตั้งค่า Wazuh endpoint ที่ /var/ossec/etc/ossec.conf ให้สามารถอ่าน log ได้
-     ``` bash
-     <localfile>
-       <log_format>syslog</log_format>
-       <location>/var/log/apache2/access.log</location>
-     </localfile>
-     ```
+  ``` bash
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/apache2/access.log</location>
+  </localfile>
+  ```
 #### 1.3 Restart Wazuh Agent เพื่อ Apply
-    - รันคำสั่ง:
-    ``` bash
-    sudo systemctl restart wazuh-agent
-    ```
+  ``` bash
+  sudo systemctl restart wazuh-agent
+  ```
 #### 1.4 ทดสอบเข้า Web server
-    ![image](https://github.com/user-attachments/assets/e654980c-8e04-4df8-933d-5657db7eaf98)
+  ![image](https://github.com/user-attachments/assets/e654980c-8e04-4df8-933d-5657db7eaf98)
+
+  
